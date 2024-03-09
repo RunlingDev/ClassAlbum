@@ -4,99 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            background: url('img/global-background.png') no-repeat center/cover;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .column {
-            flex: 1;
-            overflow: auto;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-        }
-
-        .jaychou {
-            background: url('img/jaychou.png') no-repeat center/cover;
-        }
-
-        .westlife {
-            background: url('img/westlife.png') no-repeat center/cover;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="column jaychou">
-            <h2>Jay Chou</h2>
-            <ul>
-                <li onclick="playVideo('video/jaychou1.mp4')">Song 1</li>
-                <li onclick="playVideo('video/jaychou2.mp4')">Song 2</li>
-                <li onclick="playVideo('video/jaychou3.mp4')">Song 3</li>
-                <!-- Add more songs here -->
+            <div class="artist-info">
+                <h2 class="artist-name">Jay Chou</h2>
+                <img class="artist-image" src="img/jaychou.png" alt="Jay Chou">
+            </div>
+            <ul class="song-list">
+                <li>
+                    <a href="detail.html?song=jaychou1">
+                        <span class="song-title">Song 1</span>
+                        <span class="album-title">Album 1</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?song=jaychou2">
+                        <span class="song-title">Song 2</span>
+                        <span class="album-title">Album 2</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?song=jaychou3">
+                        <span class="song-title">Song 3</span>
+                        <span class="album-title">Album 3</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="column westlife">
-            <h2>Westlife</h2>
-            <ul>
-                <li onclick="playVideo('video/westlife1.mp4')">Song 1</li>
-                <li onclick="playVideo('video/westlife2.mp4')">Song 2</li>
-                <li onclick="playVideo('video/westlife3.mp4')">Song 3</li>
-                <!-- Add more songs here -->
+            <div class="artist-info">
+                <h2 class="artist-name">Westlife</h2>
+                <img class="artist-image" src="img/westlife.png" alt="Westlife">
+            </div>
+            <ul class="song-list">
+                <li>
+                    <a href="detail.html?song=westlife1">
+                        <span class="song-title">Song 1</span>
+                        <span class="album-title">Album 1</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?song=westlife2">
+                        <span class="song-title">Song 2</span>
+                        <span class="album-title">Album 2</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?song=westlife3">
+                        <span class="song-title">Song 3</span>
+                        <span class="album-title">Album 3</span>
+                        <img class="play-icon" src="img/play-icon.png" alt="Play">
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-
-    <div id="videoPlayer" style="display: none;">
-        <iframe id="videoFrame" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <script>
-        function playVideo(videoFile) {
-            var videoPlayer = document.getElementById('videoPlayer');
-            var videoFrame = document.getElementById('videoFrame');
-            videoPlayer.style.display = 'block';
-            videoFrame.src = videoFile;
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
