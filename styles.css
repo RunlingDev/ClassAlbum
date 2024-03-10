@@ -1,8 +1,18 @@
+@font-face {
+    font-family: "Custom1";
+    src: url('font/ZhiMangXing-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Custom2";
+    src: url('font/LiuJianMaoCao-Regular.ttf');
+}
+
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, rgba(241, 239, 69, 0.5), rgba(226, 181, 98, 0.8));, no-repeat right top/contain;
-    color: #fff;
+    background: linear-gradient(to bottom, rgba(231, 200, 62, 0.5), rgba(217, 166, 70, 0.845)), no-repeat right top/contain;
+    color: fff;
 }
 
 .container {
@@ -20,17 +30,17 @@ body {
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
-    max-width: 1500px;
-    height: 500px;
-    border-radius: 20px; /* 边角圆滑，20px是示例值，可根据需要调整 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+    max-width: 45%;
+    height: 80%;
+    border-radius: 16px; /* 边角圆滑，20px是示例值，可根据需要调整 */
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.8); /* 阴影效果 */
 }
 
 .empty {
     flex: 1;
     display: flex;
     flex-direction: column;
-    max-width: 200px;
+    max-width: 10%;
 }
 
 .jaychou {
@@ -63,6 +73,8 @@ body {
     padding: 0;
     margin: 0;
     width: 100%;
+    max-height: 70%;
+    overflow-y: auto; /* 当内容超出指定高度时显示垂直滚动条 */
 }
 
 .song-list li {
@@ -119,4 +131,31 @@ body {
 .video-container {
     max-width: 800px;
     width: 100%;
+}
+
+#songTitle {
+    font-family: "Custom2";
+    font-size: 3em;
+}
+
+#albumTitle {
+    font-family: "Custom1";
+    font-size: 1em;
+}
+
+.song-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.song-list::-webkit-scrollbar-thumb {
+    background: #ccc; 
+    border-radius: 5px;
+}
+
+.song-list::-webkit-scrollbar-thumb:hover {
+    background: rgb(69, 66, 64);
+}
+
+.song-list::-webkit-scrollbar-track {
+    display: none;
 }
