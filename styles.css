@@ -3,6 +3,7 @@ body {
     padding: 0;
     background: linear-gradient(to bottom, rgba(76, 128, 238, 0.5), rgba(65, 199, 103, 0.845)), no-repeat right top/contain;
     color: fff;
+    font-family: "Custom1";
 }
 
 .container {
