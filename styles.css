@@ -1,13 +1,3 @@
-@font-face {
-    font-family: "Custom1";
-    src: url('font/ZhiMangXing-Regular.ttf');
-}
-
-@font-face {
-    font-family: "Custom2";
-    src: url('font/LiuJianMaoCao-Regular.ttf');
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -32,8 +22,9 @@ body {
     box-sizing: border-box;
     max-width: 45%;
     height: 80%;
-    border-radius: 16px; /* 边角圆滑，20px是示例值，可根据需要调整 */
-    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.8); /* 阴影效果 */
+    border-radius: 16px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), no-repeat right top/contain;
 }
 
 .empty {
@@ -43,38 +34,12 @@ body {
     max-width: 10%;
 }
 
-.jaychou {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), no-repeat right top/contain;
-}
-
-.westlife {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), no-repeat right top/contain;
-}
-
-.artist-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.artist-name {
-    max-width: 100px;
-    max-height: 100px;
-}
-
-.artist-image {
-    max-width: 100px;
-    max-height: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
 .song-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
     width: 100%;
     max-height: 70%;
-    overflow-y: auto; /* 当内容超出指定高度时显示垂直滚动条 */
 }
 
 .song-list li {
