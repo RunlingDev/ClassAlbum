@@ -67,4 +67,10 @@ Demo：[runlingdev.github.io/ClassAlbum](https://runlingdev.github.io/ClassAlbum
 }
 ```
 
+## Donate
+
+如果这个新手项目对你有所启发，还请多多支持！
+
+[Afdian](https://afdian.net/a/runling/plan)
+
 ---
