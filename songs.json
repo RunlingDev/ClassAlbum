@@ -3,14 +3,27 @@
     "title": "七里香",
     "artist": "周杰伦",
     "album": "七里香",
-    "videoSource": "video/七里香.mp4",
-    "weight": 1
+    "weight": 1,
+    "type": "audio",
+    "source": "video/七里香.mp4",
+    "lrc": "https://music.163.com/api/song/media?id=186001"
   },
   {
     "title": "反方向的钟",
     "artist": "周杰伦",
     "album": "Jay",
-    "videoSource": "video/反方向的钟.mp4",
-    "weight": 1
+    "weight": 2,
+    "type": "video",
+    "source": "video/反方向的钟.mp4",
+    "lrc": "none"
+  },
+  {
+    "title": "曲名",
+    "artist": "歌手",
+    "album": "专辑",
+    "weight": 0,
+    "type": "video",
+    "source": "源",
+    "lrc": "歌词源（专为音频）"
   }
 ]

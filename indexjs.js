@@ -46,31 +46,36 @@ function loadSongsData(callback) {
 // 检查歌曲对象是否有效
 function isValidSong(song) {
     return (
-        typeof song.title === 'string' &&           //曲名
-        typeof song.artist === 'string' &&          //歌手
-        typeof song.album === 'string' &&           //专辑
-        typeof song.videoSource === 'string' &&     //曲源
-        typeof song.weight === 'number' &&          //权重：0不出现，1随机，2一定
+        typeof song.title === 'string' &&
+        typeof song.artist === 'string' &&
+        typeof song.album === 'string' &&
+        typeof song.weight === 'number' &&
         song.weight >= 0 &&
-        song.weight <= 2
+        song.weight <= 2 &&
+        typeof song.type === 'string' &&
+        (song.type === 'video' || song.type === 'audio') &&
+        typeof song.source === 'string' &&
+        typeof song.lrc === 'string'
     );
 }
 
+// 设置歌曲对象的缺省值
+function setDefaultSongValues(song) {
+    if (song.weight === undefined) {
+        song.weight = 1;
+    }// 防止weight===0时default为1.
+    song.lrc = song.lrc || 'none';
+    return song;
+}
+
 // 根据权重随机选择歌曲
-function selectSongsByWeight(songs) {
+function selectSongs(songs) {
     const selectedSongs = [];
-    const totalWeight = songs.reduce((sum, song) => sum + song.weight, 0);
-
-    while (selectedSongs.length < songs.length && selectedSongs.length < getMaxDisplayCount()) {
-        const randomWeight = Math.random() * totalWeight;
-        let weightSum = 0;
-
-        for (const song of songs) {
-            weightSum += song.weight;
-            if (weightSum >= randomWeight && !selectedSongs.includes(song)) {
-                selectedSongs.push(song);
-                break;
-            }
+    while (selectedSongs.length < songs.length && selectedSongs.length <= getMaxDisplayCount()*2) {
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        const song = songs[randomIndex];
+        if (!selectedSongs.includes(song)) {
+            selectedSongs.push(song);
         }
     }
 
@@ -80,49 +85,35 @@ function selectSongsByWeight(songs) {
 // 获取最大显示条数
 function getMaxDisplayCount() {
     const screenHeight = window.innerHeight || document.documentElement.clientHeight;
-    const songItemHeight = 50; // 根据您的样式调整每个歌曲项的高度
-    const maxDisplayCount = Math.floor((screenHeight - 200) / songItemHeight); // 减去其他元素的高度
+    const songItemHeight = 50;
+    const maxDisplayCount = Math.floor((screenHeight - 230) / songItemHeight);
     return maxDisplayCount;
 }
 
 // 在页面中显示歌曲列表
 function displaySongs(songs) {
-    const fixedSongList = document.querySelector('.song-list.fixed');
-    const randomSongLists = document.querySelectorAll('.song-list.random');
+    const songLists = document.querySelectorAll('.song-list');
+    const weightedSongs = songs.filter(song => song.weight > 0);
+    const fixedSongs = weightedSongs.filter(song => song.weight === 2);
+    const randomSongs = weightedSongs.filter(song => song.weight === 1);
+    const selectedSongs = fixedSongs.concat(selectSongs(randomSongs));
 
-    // 根据权重选择歌曲
-    const selectedSongs = selectSongsByWeight(songs);
-
-    // 固定展示的歌曲
-    const fixedSongs = selectedSongs.filter(song => song.weight === 2);
-    fixedSongs.forEach(song => {
-        fixedSongList.innerHTML += `
-            <li>
-                <a href="detail.html?song=${encodeURIComponent(song.title)}">
-                    <span class="song-title">${song.title}</span>
-                    <span class="album-title">${song.album} - ${song.artist}</span>
-                </a>
-                <a href="${song.videoSource}" target="_blank"><img class="play-icon" src="img/play-icon.png" alt="Play"></a>
-            </li>
-        `;
-    });
-
-    // 随机展示的歌曲
-    const randomSongs = selectedSongs.filter(song => song.weight !== 2);
-    const halfCount = Math.ceil(randomSongs.length / 2);
-
-    randomSongLists.forEach((list, index) => {
-        const startIndex = index * halfCount;
-        const endIndex = startIndex + halfCount;
-
-        randomSongs.slice(startIndex, endIndex).forEach(song => {
+    const songsPerList  = Math.min((selectedSongs.length/2),getMaxDisplayCount());
+    songLists.forEach((list,index) => {
+        const startIndex = index === 0 ? 0 : songsPerList;
+        const endIndex = index === 0 ? songsPerList : (songsPerList*2);
+        console.log(startIndex,endIndex);
+        console.log(selectedSongs);
+        console.log(songsPerList);
+        selectedSongs.slice(startIndex, endIndex).forEach(song => {
+            const detailPage = song.type === 'video' ? 'vDetail.html' : 'aDetail.html';
             list.innerHTML += `
                 <li>
-                    <a href="detail.html?song=${encodeURIComponent(song.title)}">
+                    <a href="${detailPage}?song=${encodeURIComponent(song.title)}">
                         <span class="song-title">${song.title}</span>
                         <span class="album-title">${song.album} - ${song.artist}</span>
                     </a>
-                    <a href="${song.videoSource}" target="_blank"><img class="play-icon" src="img/play-icon.png" alt="Play"></a>
+                    <a href="${song.source}" target="_blank"><img class="play-icon" src="img/play-icon.png" alt="Play"></a>
                 </li>
             `;
         });
@@ -132,6 +123,7 @@ function displaySongs(songs) {
 // 处理主页面加载
 window.onload = function() {
     loadSongsData(songs => {
-        displaySongs(songs);
+        const validSongs = songs.filter(isValidSong).map(setDefaultSongValues);
+        displaySongs(validSongs);
     });
 };

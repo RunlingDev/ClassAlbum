@@ -94,7 +94,7 @@ body {
     text-align: center;
 }
 
-.video-container {
+#mediaContainer {
     max-width: 800px;
     width: 100%;
 }
