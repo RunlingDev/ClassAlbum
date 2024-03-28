@@ -46,15 +46,16 @@ function loadSongsData(callback) {
 // 检查歌曲对象是否有效
 function isValidSong(song) {
     return (
-        typeof song.title === 'string' &&
-        typeof song.artist === 'string' &&
-        typeof song.album === 'string' &&
-        typeof song.videoSource === 'string' &&
-        typeof song.weight === 'number' &&
+        typeof song.title === 'string' &&           //曲名
+        typeof song.artist === 'string' &&          //歌手
+        typeof song.album === 'string' &&           //专辑
+        typeof song.videoSource === 'string' &&     //曲源
+        typeof song.weight === 'number' &&          //权重：0不出现，1随机，2一定
         song.weight >= 0 &&
         song.weight <= 2
     );
 }
+
 // 根据权重随机选择歌曲
 function selectSongsByWeight(songs) {
     const selectedSongs = [];
