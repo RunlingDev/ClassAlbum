@@ -4,13 +4,13 @@
     "artist": "周杰伦",
     "album": "七里香",
     "videoSource": "video/七里香.mp4",
-    "isFixed": true
+    "weight": 1
   },
   {
     "title": "反方向的钟",
     "artist": "周杰伦",
     "album": "Jay",
     "videoSource": "video/反方向的钟.mp4",
-    "isFixed": false
+    "weight": 1
   }
 ]
