@@ -29,14 +29,22 @@ Demo：[runlingdev.github.io/ClassAlbum](https://runlingdev.github.io/ClassAlbum
 |`title`|歌曲名称|反方向的钟|
 |`artist`|艺术家|周杰伦|
 |`album`|专辑名|Jay|
-|`videoSource`|视频地址|video/反方向的钟.mp4|
-|`isFixed`|是否置顶|false|
+|`weight`|权重|2|
+|`type`|曲目类型|audio|
+|`source`|资源地址|video/反方向的钟.mp4|
+|`lrc`|歌词源|none|
 
 > 注：
 >
-> `videoSource` 是内置播放器iframe的播放地址，可以是本地路径或网络地址，本地路径请使用绝对路径，或与 `detail.html` 的相对位置。
+> 权重参数有如下三个值：
+> 
+> 0，此曲不展示； 1，参与随机展示； 2，一直展示
+> 
+> source指的是播放的视频/音频文件源
 >
-> `isFixed` 指示了歌曲是否置顶--若 `isFixed` 值为 `false` ，则参与随机歌单派送。反之，则会一直在左栏的上部出现（注意：当Fixed曲目过多时，并不会自动去往右栏......）
+> lrc指的是音频曲目的歌词源，视频曲目请使用none。
+> 
+> 这两项都可以本地文件或在线文件，但是不能一个本地一个在线。
 
 *Warning:出于对安全问题的考虑，CORS不允许对本地文件的请求[#1](https://github.com/RunlingDev/ClassAlbum/issues/1)。您需要采取些许行动，以在本地应用您的歌单。*
 
@@ -49,6 +57,10 @@ Demo：[runlingdev.github.io/ClassAlbum](https://runlingdev.github.io/ClassAlbum
 2. 允许请求本地文件
 
 一个普遍性的办法是在Chrome快捷方式中添加 `--allow-file-access-from-files` 参数。这对于我们的项目而言没有安全隐患。参照[CSDN](https://blog.csdn.net/chenmoupeng/article/details/107317247)。
+
+3. 用Node.js跑本地服务
+
+这需要一些动手能力。参见[#1](https://github.com/RunlingDev/ClassAlbum/issues/1)。
 
 
 ### 更改字体
